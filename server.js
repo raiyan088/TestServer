@@ -33,6 +33,17 @@ app.get('/number', async (req, res) => {
     }
 })
 
+app.get('/ip', async (req, res) => {
+    try {
+        let response = await axios.get('https://ifconfig.me/ip')
+        res.setHeader('Content-Type', 'text/plain')
+        res.send(response.data)
+    } catch (error) {
+        res.setHeader('Content-Type', 'text/plain')
+        res.end('Error')
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Test server running on http://localhost:${PORT}`)
 })
